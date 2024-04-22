@@ -1,4 +1,30 @@
-var arr1 = "john".split(''); 
+let p1 = new Promise((res, rej) => {
+    document.getElementById("myBtn").addEventListener("click", () => {
+        res("Hello World");
+    });
+
+    document.getElementById("myBtn2").addEventListener("click", () => {
+        rej("error occured") ;
+    });
+});
+
+console.log("p1", p1)
+
+p1.then(res => {
+    console.log("res", res)
+}).catch(error => console.log("error", error))
+
+
+async function myFunc() {
+    console.log("p1", await p1)
+
+}
+
+const res = myFunc();
+console.log("res111", res)
+
+
+// var arr1 = "john".split(''); 
 // ['j', 'o', 'h', 'n'];
 
 // var arr2 = arr1.reverse();
@@ -10,7 +36,7 @@ var arr1 = "john".split('');
 // arr2.push(arr3);
 // //  ['n', 'h', 'o', 'j', ['j', 'o', 'n', 'e', 's']]
 
-console.log("array 1: length=" + arr1.length + " last=" + arr1.slice(-1));
+// console.log("array 1: length=" + arr1.length + " last=" + arr1.slice(-1));
 // 4, ['j', 'o', 'h']
 // console.log("array 2: length=" + arr2.length + " last=" + arr2.slice(-1));
 //5, ['n', 'h', 'o', 'j']
