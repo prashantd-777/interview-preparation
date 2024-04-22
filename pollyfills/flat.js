@@ -1,28 +1,21 @@
-const arr = [1, 2, 3, 4, 5, [6, 4, 3, 5, [1, 2, 3]]];
-
-const result = arr.flat(1);
-console.log("result is::", result);
-
+// Flattened the array depth wise
+const arr = [1, 2, 3, 4, 5, [6, 4, 3, 5, [1, 2, 3, [9, 8]]]];
+// arr.flat(2);
 
 Array.prototype.myFlat = function (depth) {
     const output = [];
-    this.index;
-    if(depth <=0) {
-        output.push(this[this.index])
-        return output
-    }
-    for(let i = 0; i<this.length; i++) {
-        if(Array.isArray(this[i])) {
-            this.index = i;
-            this[i].myFlat(depth -1)
-        } else {
-            output.push(this[i])
+    function flattened(arr, currentDepth) {
+        for(let i = 0; i< arr.length; i++) {
+            if(Array.isArray(arr[i]) && currentDepth < depth) {
+                flattened(arr[i], currentDepth + 1);
+            } else {
+                output.push(arr[i])
+            }
         }
     }
 
-    return output
-
+    flattened(this, 0)
+    return output;
 }
 
-const result1 = arr.myFlat(1);
-console.log("result1", result1)
+console.log("final result is::", arr.myFlat(2));
