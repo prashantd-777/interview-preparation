@@ -1,27 +1,50 @@
-let p1 = new Promise((res, rej) => {
-    document.getElementById("myBtn").addEventListener("click", () => {
-        res("Hello World");
-    });
+// map pollyfill
+const radius = [2, 3, 4, 5];
 
-    document.getElementById("myBtn2").addEventListener("click", () => {
-        rej("error occured") ;
-    });
-});
-
-console.log("p1", p1)
-
-p1.then(res => {
-    console.log("res", res)
-}).catch(error => console.log("error", error))
-
-
-async function myFunc() {
-    console.log("p1", await p1)
-
+function calculateArea(r) {
+    return Math.PI * r * r;
 }
 
-const res = myFunc();
-console.log("res111", res)
+
+Array.prototype.myMap = function(cb) {
+    const result = [];
+    for(let i = 0; i < this.length; i++) {
+        result.push(cb(this[i]))
+    }
+    return result;
+}
+
+const area = radius.myMap(calculateArea);
+
+console.log("Area", area);
+
+
+
+
+// let p1 = new Promise((res, rej) => {
+//     document.getElementById("myBtn").addEventListener("click", () => {
+//         res("Hello World");
+//     });
+
+//     document.getElementById("myBtn2").addEventListener("click", () => {
+//         rej("error occured") ;
+//     });
+// });
+
+// console.log("p1", p1)
+
+// p1.then(res => {
+//     console.log("res", res)
+// }).catch(error => console.log("error", error))
+
+
+// async function myFunc() {
+//     console.log("p1", await p1)
+
+// }
+
+// const res = myFunc();
+// console.log("res111", res)
 
 
 // var arr1 = "john".split(''); 
