@@ -17,6 +17,26 @@ console.log(add(1, 2, 3)(4, 5));
 console.log(add(1, 2, 3)(4)(5));
 console.log(add(1)(2)(3)(4)(5));
 
+
+// Another type
+function curryFn() {
+    let val = 0;
+    return function (a = 0) {
+        val = val + a;
+        return val;
+    }
+}
+
+const sum = curryFn();
+
+console.log(sum(1));
+console.log(sum(2));
+console.log(sum(3));
+console.log(sum(4));
+console.log(sum(5));
+console.log(sum());
+
+
 // // fuction currying using bind method
 // // multiply
 
