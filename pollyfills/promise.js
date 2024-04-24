@@ -1,3 +1,64 @@
+function dummyAPI(time) {
+    return new Promise((res, rej) => {
+        setTimeout(() => res(time), time)
+    })
+};
+
+const taskArray = [dummyAPI(1000), dummyAPI(2000),dummyAPI(20), dummyAPI(3000)];
+
+// Promise.all(taskArray).then(res => console.log("result is:", res)).catch(error => console.log("error is::", error))
+
+Promise.myAll = function (promises) {
+    const output = [];
+    let promise = new Promise((res, rej) => {
+        promises.forEach(async (item, index) => {
+            try {
+                const result = await item;
+                 output.push(result)
+                if(index == promises.length - 1) {
+                    res(output);
+                }
+            } catch(error) {
+                rej(error)
+            }
+        })
+    });
+    return promise;
+}
+
+Promise.myRace = function (promises) {
+    let promise = new Promise((res, rej) => {
+        promises.forEach(item => {
+            Promise.resolve(item).then(res).catch(rej);
+        }) 
+    });
+    return promise;
+}
+
+Promise.myAllSettled = function(promises) {
+    let mPromise = promises.map(item => {
+        return Promise.resolve(item).then(val => {
+            return {
+                status: "fulfilled",
+                value: val
+            }
+        }).catch(error => {
+            return {
+                status: "error",
+                reason: error
+            }
+        });
+    });
+    return Promise.all(mPromise)
+}
+
+Promise.myAll(taskArray).then(res => console.log("result is:", res)).catch(error => console.log("error is::", error))
+
+Promise.myRace(taskArray).then(res => console.log("race result is:", res)).catch(error => console.log("error is::", error))
+
+Promise.myAllSettled(taskArray).then(res => console.log("settled promise result is:", res)).catch(error => console.log("error is::", error))
+
+
 // let p1= new Promise((res, rej) => {
 //     setTimeout(() => res("Hello World"), 2000)
     
