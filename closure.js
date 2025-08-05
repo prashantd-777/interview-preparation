@@ -10,7 +10,7 @@
 // }
 // x();
 
-// Another example => When we return function from another function, so that time we can call this function any time below in our code and also it remembers the reference and values into that scope.
+// Another example => When we return function from another function, so that time we can call this function any time below in our code and also it still remembers the reference and values to that scope.
 function x() {
     var a = 7;
     function y() {
@@ -40,3 +40,13 @@ let outer = outerFunction();
 outer() //11
 outer() //12
 outer() //13
+
+
+// Uses of closures
+// 1. Module Design Pattern
+// 2. Currying
+// 3. Function like once
+// 4. Memoize
+// 5. Maintaining state in async world
+// 6. setTimeouts
+// 7. Iterators
