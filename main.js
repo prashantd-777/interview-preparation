@@ -135,3 +135,88 @@ console.log("Area", area);
 
 
 // let result = useMemo(() => square(2), [2])
+
+
+
+
+
+
+
+// Online Javascript Editor for free
+// Write, Edit and Run your Javascript code using JS Online Compiler
+
+let inputArray = [1, 3, 6, 9, 2];
+
+function logic(acc, current) {
+    return acc + current;
+}
+
+function logic1(item) {
+    return item * 2;
+}
+
+function logic2(item) {
+    return item % 2 === 0;
+}
+
+function logic3(item) {
+    return item === 9;
+}
+
+Array.prototype.myReduce = function (cb, defaultValue) {
+    let acc = defaultValue;
+    for(let i = 0; i< this.length; i++) {
+        if(acc) {
+            acc = cb(acc, this[i]);
+        } else {
+            acc = this[i];
+        }
+    }
+    return acc;
+}
+
+
+Array.prototype.myMap = function (cb) {
+    const output = [];
+    for(let i = 0; i< this.length; i++) {
+        output.push(cb(this[i]))
+    }
+    
+    return output;
+}
+
+Array.prototype.myFilter = function (cb) {
+    const output = [];
+    for(let i = 0; i< this.length; i++) {
+        if(cb(this[i])) {
+            output.push(this[i]);
+        }
+    }
+    return output;
+}
+
+Array.prototype.myFind = function (cb) {
+    let output = undefined;
+    for(let i = 0; i< this.length; i++) {
+        if(cb(this[i])) {
+            return this[i];
+        }
+    }
+}
+
+
+console.log("Try programiz.pro", inputArray.reduce(logic, 0));
+console.log("Try programiz.pro", inputArray.myReduce(logic));
+
+console.log("Try programiz.pro", inputArray.map(logic1));
+console.log("Try programiz.pro", inputArray.myMap(logic1));
+
+
+console.log("Try programiz.pro", inputArray.filter(logic2));
+console.log("Try programiz.pro", inputArray.myFilter(logic2));
+
+
+console.log("Try programiz.pro", inputArray.find(logic3));
+console.log("Try programiz.pro", inputArray.myFind(logic3));
+
+console.log("Try programiz.pro", inputArray.findIndex(logic3));
