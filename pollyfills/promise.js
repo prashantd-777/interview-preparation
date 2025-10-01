@@ -174,6 +174,8 @@ Promise.myAllSettled(taskArray).then(res => console.log("settled promise result 
 
 
 
+
+
 // let p1 = new Promise((res, rej) => res("Hello world"));
 // let p2 = new Promise((res, rej) => res("Test the promise"));
 
